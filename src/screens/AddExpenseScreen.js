@@ -47,7 +47,7 @@ const AddExpenseScreen = ({navigation}) => {
           <Icon name="arrow-left" size={24} color="#fff" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Kharcha Add Karein</Text>
-        <View style={{width: 40}} />
+        <View style={styles.headerSpacer} />
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   backBtn: {padding: 4},
+  headerSpacer: {width: 40},
   headerTitle: {color: '#fff', fontSize: 17, fontWeight: '700'},
   content: {padding: 16, paddingBottom: 40},
   label: {fontSize: 14, fontWeight: '600', color: '#424242', marginTop: 18, marginBottom: 8},

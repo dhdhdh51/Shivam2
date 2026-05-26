@@ -28,6 +28,12 @@ const FinanceStack = () => (
   </Stack.Navigator>
 );
 
+const TAB_ICONS = {
+  Khet: 'sprout',
+  Reminders: 'bell-ring',
+  Finance: 'cash-multiple',
+};
+
 const MainNavigator = () => {
   return (
     <Tab.Navigator
@@ -44,14 +50,7 @@ const MainNavigator = () => {
         tabBarActiveTintColor: '#2E7D32',
         tabBarInactiveTintColor: '#9E9E9E',
         tabBarLabelStyle: {fontSize: 11, fontWeight: '600'},
-        tabBarIcon: ({color, size}) => {
-          const icons = {
-            Khet: 'sprout',
-            Reminders: 'bell-ring',
-            Finance: 'cash-multiple',
-          };
-          return <Icon name={icons[route.name]} size={size} color={color} />;
-        },
+        tabBarIcon: ({color, size}) => <Icon name={TAB_ICONS[route.name]} size={size} color={color} />,
       })}>
       <Tab.Screen name="Khet" component={HomeStack} />
       <Tab.Screen name="Reminders" component={RemindersScreen} />
