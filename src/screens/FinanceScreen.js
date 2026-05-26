@@ -2,7 +2,7 @@ import React, {useState, useCallback} from 'react';
 import {View, Text, FlatList, TouchableOpacity, StyleSheet} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {getExpenses, deleteExpense} from '../utils/storage';
+import {getExpenses} from '../utils/storage';
 
 const CATEGORY_ICONS = {
   Seed: {icon: 'seed', color: '#2E7D32', bg: '#E8F5E9'},

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {
   View, Text, TextInput, TouchableOpacity,
-  ScrollView, StyleSheet, Alert, Platform,
+  ScrollView, StyleSheet, Alert ,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -84,7 +84,7 @@ const AddFieldScreen = ({navigation}) => {
           <Icon name="arrow-left" size={24} color="#fff" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Naya Khet Add Karein</Text>
-        <View style={{width: 40}} />
+        <View style={styles.headerSpacer} />
       </View>
 
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
@@ -206,6 +206,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   backBtn: {padding: 4},
+  headerSpacer: {width: 40},
   headerTitle: {color: '#fff', fontSize: 17, fontWeight: '700'},
   content: {padding: 16, paddingBottom: 40},
   labelRow: {flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 20, marginBottom: 8},

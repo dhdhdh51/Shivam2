@@ -43,7 +43,9 @@ const HomeScreen = ({navigation}) => {
   };
 
   const getDaysSinceSowing = sowingDate => {
-    if (!sowingDate) return null;
+    if (!sowingDate) {
+      return null;
+    }
     const diff = Math.floor((Date.now() - new Date(sowingDate)) / (1000 * 60 * 60 * 24));
     return diff;
   };
@@ -75,9 +77,9 @@ const HomeScreen = ({navigation}) => {
               <Icon name="water" size={12} color="#1565C0" />
               <Text style={styles.tagText}>Watering set</Text>
             </View>
-            <View style={[styles.tag, {backgroundColor: '#E8F5E9'}]}>
+            <View style={[styles.tag, styles.aiTag]}>
               <Icon name="leaf" size={12} color="#2E7D32" />
-              <Text style={[styles.tagText, {color: '#2E7D32'}]}>AI advice ready</Text>
+              <Text style={[styles.tagText, styles.aiTagText]}>AI advice ready</Text>
             </View>
           </View>
           <Icon name="chevron-right" size={20} color="#BDBDBD" />
@@ -175,6 +177,8 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   tagText: {fontSize: 11, color: '#1565C0', fontWeight: '600'},
+  aiTag: {backgroundColor: '#E8F5E9'},
+  aiTagText: {color: '#2E7D32'},
   fab: {
     position: 'absolute',
     bottom: 24,
