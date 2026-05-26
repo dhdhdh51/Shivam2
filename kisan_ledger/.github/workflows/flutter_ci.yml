@@ -1,12 +1,17 @@
-name: Flutter CI
+name: Kisan Ledger Flutter CI
 
 on:
   push:
-    branches: ['**']
+    paths:
+      - 'kisan_ledger/**'
+      - '.github/workflows/flutter_ci.yml'
   pull_request:
+    paths:
+      - 'kisan_ledger/**'
+      - '.github/workflows/flutter_ci.yml'
 
 jobs:
-  build:
+  farmer-app:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -16,11 +21,13 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          cache: true
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test
       - run: flutter build apk --release
       - name: Sign APK
+        if: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
         uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: kisan_ledger/farmer_app/build/app/outputs/flutter-apk
@@ -30,5 +37,26 @@ jobs:
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
       - uses: actions/upload-artifact@v4
         with:
-          name: kisan-ledger-signed-apk
-          path: kisan_ledger/farmer_app/build/app/outputs/flutter-apk/*.apk
+          name: kisan-ledger-farmer-apk
+          path: |
+            kisan_ledger/farmer_app/build/app/outputs/flutter-apk/*.apk
+
+  admin-web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: kisan_ledger/admin_panel
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter build web --release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kisan-ledger-admin-web
+          path: kisan_ledger/admin_panel/build/web
