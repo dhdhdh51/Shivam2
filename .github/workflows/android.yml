@@ -8,11 +8,10 @@ on:
 
 jobs:
   build:
-    name: Build Debug APK
+    name: Build APK (Debug + Release)
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -53,11 +52,23 @@ jobs:
         env:
           NODE_OPTIONS: "--max_old_space_size=4096"
 
-      - name: Upload Debug APK
+      - name: Build Release APK
+        run: cd android && ./gradlew assembleRelease --stacktrace
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
+
+      - name: Upload Debug APK (needs Metro at runtime)
         uses: actions/upload-artifact@v4
         with:
           name: KisanSathi-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30
+
+      - name: Upload Release APK (standalone)
+        uses: actions/upload-artifact@v4
+        with:
+          name: KisanSathi-release-apk
+          path: android/app/build/outputs/apk/release/app-release.apk
           retention-days: 30
 
       - name: Upload Build Reports on failure
