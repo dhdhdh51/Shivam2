@@ -1,0 +1,8 @@
+{
+  "indexes": [
+    {"collectionGroup":"expenses","queryScope":"COLLECTION","fields":[{"fieldPath":"farmerId","order":"ASCENDING"},{"fieldPath":"date","order":"DESCENDING"}]},
+    {"collectionGroup":"activities","queryScope":"COLLECTION","fields":[{"fieldPath":"farmerId","order":"ASCENDING"},{"fieldPath":"date","order":"DESCENDING"}]},
+    {"collectionGroup":"fields","queryScope":"COLLECTION","fields":[{"fieldPath":"farmerId","order":"ASCENDING"},{"fieldPath":"createdAt","order":"DESCENDING"}]}
+  ],
+  "fieldOverrides": []
+}
