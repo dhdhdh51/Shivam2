@@ -2,9 +2,29 @@ name: Build KisanSathi APK
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
+    paths:
+      - 'android/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'yarn.lock'
+      - 'babel.config.js'
+      - 'metro.config.js'
+      - 'App.js'
+      - 'index.js'
+      - '.github/workflows/android.yml'
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
+    paths:
+      - 'android/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'yarn.lock'
+      - 'babel.config.js'
+      - 'metro.config.js'
+      - 'App.js'
+      - 'index.js'
+      - '.github/workflows/android.yml'
 
 jobs:
   build:
@@ -12,7 +32,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
